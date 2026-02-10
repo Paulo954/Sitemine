@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Omnitrix</title>
+    <!-- Fonte Minecraft -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="loja.css">
+</head>
+<body>
+    
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header estilo Minecraft -->
+    <header class="minecraft-header">
+        <div class="container-header">
+            <div class="logo-text">LOJA OMNITRIX</div>
+            <a href="index.html" class="btn-voltar">&lt; Voltar</a>
+        </div>
+    </header>
+
+    <!-- Loja -->
+    <main class="loja-container">
+        <!-- Card Omnitrix 1 -->
+        <div class="loja-card">
+            <img src="proto.jpg" alt="Omnitrix 1">
+            <h3>Omnitrix Protótipo</h3>
+            <p>Protótipo omnitrix.</p>
+            <button onclick="comprar('Omnitrix Protótipo', 'R$10,00', '7799732886')">Comprar</button>
+        </div>
+
+        <!-- Card Omnitrix 2 -->
+        <div class="loja-card">
+            <img src="sa2.jpg" alt="Omnitrix 2">
+            <h3>Omnitrix Recalibrado</h3>
+            <p>Omnitrix JÁ recalibrado.</p>
+            <button onclick="comprar('Omnitrix Recalibrado', 'R$14,00', '7799732886')">Comprar</button>
+        </div>
+
+        <!-- Card Omnitrix 3 -->
+<div class="loja-card">
+    <img src="nano.jpg" alt="Omnitrix 3">
+    <h3>Omni NANO</h3>
+    <p>Omnitrix com sistem nano.</p>
+    <button onclick="comprar('Omnitrix NANO', 'R$15,00', '7799732886')">Comprar</button>
+</div>
+<!-- Card Omnitrix 3 -->
+<div class="loja-card">
+    <img src="carnitrix.jpg" alt="Omnitrix 3">
+    <h3>Omni CARNITRIX</h3>
+    <p>Omnitrix com sistem avançado.</p>
+    <button onclick="comprar('Omnitrix CARNITRIX', 'R$20,00', '7799732886')">Comprar</button>
+</div>
+<div class="loja-card">
+            <img src="quebrado.jpg" alt="Omnitrix 2">
+            <h3>Omnitrix quebrado</h3>
+            <p>Omnitrix quebrado.</p>
+            <button onclick="comprar('Omnitrix quebrado', 'R$11,00', '7799732886')">Comprar</button>
+        </div>
+        <div class="loja-card">
+            <img src="sumo.jpg" alt="Omnitrix 2">
+            <h3>Omnitrix sumô</h3>
+            <p>Omnitrix sumô.</p>
+            <button onclick="comprar('Omnitrix sumo', 'R$12,00', '7799732886')">Comprar</button>
+        </div>
+    </main>
+
+    <!-- JS para comprar -->
+    <script>
+        function comprar(nome, valor, chavePix) {
+            alert(
+                `Produto: ${nome}\nValor: ${valor}\nChave Pix: ${chavePix}\n\nAPÓS EFETUAR O PAGAMENTO, MANDE O COMPROVANTE PARA: PEcraft`
+            );
+        }
+    </script>
+    <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let particlesArray = [];
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Criar partículas
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 4 + 2;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+            this.color = `rgba(0, ${Math.floor(Math.random()*255)}, 0, ${Math.random() * 0.5 + 0.3})`;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            // Reinicia partícula quando sai da tela
+            if (this.x > width || this.x < 0) this.x = Math.random() * width;
+            if (this.y > height || this.y < 0) this.y = Math.random() * height;
+        }
+        
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    
+    // Criar várias partículas
+    function initParticles(num = 100) {
+        particlesArray = [];
+        for (let i = 0; i < num; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+    initParticles(120); // número de partículas
+    
+    // Animação
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particlesArray.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // Ajustar canvas ao redimensionar
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles(120);
+    });
+</script>
+
+</body>
+</html>
