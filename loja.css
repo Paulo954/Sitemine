@@ -1,0 +1,128 @@
+/* Fonte Minecraft */
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #0F2D0F; /* fundo verde escuro */
+    color: #fff;
+}
+
+/* Header estilo Minecraft */
+.minecraft-header {
+    background-color: #2F322F;
+    padding: 10px 20px;
+}
+
+.container-header {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.btn-voltar {
+    background-color: #00c000;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #00ff00;
+}
+
+/* Loja Container */
+.loja-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 10px;
+}
+
+/* Card Omnitrix */
+.loja-card {
+    background: rgba(50,50,50,0.7);
+    border: 2px solid #00c000;
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.loja-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,255,0,0.5);
+}
+
+.loja-card img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.loja-card h3 {
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+.loja-card p {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.loja-card button {
+    background-color: #00c000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.loja-card button:hover {
+    background-color: #00ff00;
+}
+
+/* Canvas de partículas */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* fica atrás de todo conteúdo */
+    pointer-events: none; /* permite clicar nos botões normalmente */
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .loja-card {
+        width: 90%;
+        padding: 15px;
+    }
+    .loja-card h3 {
+        font-size: 14px;
+    }
+    .loja-card p {
+        font-size: 11px;
+    }
+    .loja-card button {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}

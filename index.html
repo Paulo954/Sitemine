@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor Minecraft Ben 10</title>
+    <!-- Fonte estilo Minecraft -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustes rápidos para partículas e sobreposição */
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #0f2d0f; /* verde escuro */
+            color: #fff;
+        }
+
+        /* Canvas de partículas atrás de tudo */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Header */
+        .minecraft-header {
+            position: relative;
+            z-index: 2; /* acima do canvas */
+            background-color: #1a3d1a;
+            padding: 10px 20px;
+        }
+
+        .container-header {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            color: #fff;
+            text-shadow: 1px 1px 5px #000;
+        }
+
+        .btn-comprar {
+            background-color: #00c000;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-comprar:hover {
+            background-color: #00ff00;
+        }
+
+        /* Overlay cinza leve atrás do conteúdo */
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(200,200,200,0.1);
+            z-index: 1;
+        }
+
+        /* Cards */
+        .cards-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 60px 20px;
+        }
+
+        .card {
+            background: rgba(50,50,50,0.7);
+            border: 2px solid #00c000;
+            border-radius: 15px;
+            padding: 30px 40px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,255,0,0.5);
+        }
+
+        .card h2 {
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+
+        /* Features */
+        .features {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .feature {
+            background: rgba(40,40,40,0.7);
+            border: 2px solid #00c000;
+            border-radius: 12px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,255,0,0.5);
+        }
+
+        .feature h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        /* Rodapé */
+        footer {
+            position: relative;
+            z-index: 2;
+            background: rgba(20,20,20,0.8);
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #00c000;
+            color: #fff;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="minecraft-header">
+        <div class="container-header">
+            <div class="logo-text">MINECRAFT</div>
+            <a href="01.html" class="btn-comprar">Comprar &gt;</a>
+        </div>
+    </header>
+
+    <!-- Overlay leve -->
+    <div class="background-overlay"></div>
+
+    <!-- Cards -->
+    <main class="cards-container">
+        <div class="card">
+            <h2>Nossa Loja</h2>
+            <p>
+            Bem-vindo à nossa loja oficial do Universo Ben 10! Aqui você encontra os <strong>Omnitrix mais incríveis</strong>, cuidadosamente inspirados no desenho, com design exclusivo e detalhes que vão impressionar qualquer fã. Cada Omnitrix é pensado para colecionadores e jogadores, trazendo uma experiência completa do universo Ben 10.<br><br>
+            Além dos Omnitrix, você pode explorar acessórios, skins e itens especiais que complementam sua aventura no servidor Minecraft Ben 10.
+            </p>
+        </div>
+        <div class="card">
+            <h2>Sobre Nós</h2>
+            <p>
+            Somos o <strong>Servidor Minecraft Ben 10</strong>, um espaço dedicado a fãs que querem viver aventuras únicas dentro do universo Ben 10. Aqui, você pode explorar mapas personalizados, enfrentar desafios emocionantes, usar poderes do Omnitrix e interagir com uma comunidade ativa de jogadores de todas as idades.<br><br>
+            Nosso servidor combina o melhor de Minecraft com a magia de Ben 10, criando uma experiência totalmente imersiva. Junte-se a nós e viva a emoção de ser um herói do Omnitrix dentro de Minecraft!
+            </p>
+        </div>
+    </main>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature">
+            <h3>Poderes do Omnitrix</h3>
+            <p>Use habilidades únicas inspiradas no Ben 10 para explorar e lutar no servidor.</p>
+        </div>
+        <div class="feature">
+            <h3>Mapas Personalizados</h3>
+            <p>Descubra mundos secretos, aventuras e desafios criados especialmente para você.</p>
+        </div>
+        <div class="feature">
+            <h3>Eventos Semanais</h3>
+            <p>Participe de eventos especiais, ganhe recompensas e destaque-se na comunidade.</p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 Servidor Minecraft Ben 10 | Todos os direitos reservados</p>
+    </footer>
+
+    <!-- JS Partículas -->
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let particlesArray = [];
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `rgba(0, ${Math.floor(Math.random()*255)}, 0, ${Math.random()*0.5 + 0.3})`;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if(this.x > width || this.x < 0) this.x = Math.random() * width;
+                if(this.y > height || this.y < 0) this.y = Math.random() * height;
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function initParticles(num = 100) {
+            particlesArray = [];
+            for(let i=0;i<num;i++) particlesArray.push(new Particle());
+        }
+        initParticles(120);
+        
+        function animate() {
+            ctx.clearRect(0,0,width,height);
+            particlesArray.forEach(p=>{p.update();p.draw();});
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        window.addEventListener('resize', ()=>{
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles(120);
+        });
+    </script>
+
+</body>
+</html>
